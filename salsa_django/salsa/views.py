@@ -19,3 +19,14 @@ def event_create(request):
     else:
         form = EventForm()
     return render(request, 'salsa/event_create.html', {'form': form})
+
+def event_edit(request, pk):
+    event = Event.objects.get(pk=pk)
+    if request.method == "POST":
+        form = EventForm(request.POST, instance=event)
+        if form.is_valid():
+            event = form.save()
+            return redirect('event_detail', pk=event.pk)
+    else:
+        form = EventForm(instance=event)
+    return render(request, 'salsa/event_create.html', {'form': form})
