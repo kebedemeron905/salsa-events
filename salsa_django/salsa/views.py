@@ -1,5 +1,5 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from .forms import EventForm
 from .models import Event
 
 def event_list(request):
@@ -9,3 +9,13 @@ def event_list(request):
 def event_detail(request, pk):
     event = Event.objects.get(id=pk)
     return render(request, 'salsa/event_detail.html', {'event': event})
+
+def event_create(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save()
+            return redirect('event_detail', pk=event.pk)
+    else:
+        form = EventForm()
+    return render(request, 'salsa/event_create.html', {'form': form})
