@@ -1,1 +1,1 @@
-web: gunicorn salsa_django.wsgi --log-file -
+web: gunicorn salsa_django.salsa_django.wsgi --log-file -
