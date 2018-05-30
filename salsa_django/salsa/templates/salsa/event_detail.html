@@ -11,4 +11,5 @@
         <li>{{event.cost}} </li>
         <li><a href=''>{{event.event_site}}</a></li>
 </ul>
+<a href="{% url 'event_delete' pk=event.pk %}">Delete</a>
 {% endblock %}

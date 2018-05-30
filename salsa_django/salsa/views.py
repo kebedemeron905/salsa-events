@@ -15,7 +15,7 @@ def event_create(request):
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save()
-            return redirect('event_detail', pk=event.pk)
+            return redirect('event_list')
     else:
         form = EventForm()
     return render(request, 'salsa/event_create.html', {'form': form})
@@ -30,3 +30,8 @@ def event_edit(request, pk):
     else:
         form = EventForm(instance=event)
     return render(request, 'salsa/event_create.html', {'form': form})
+
+
+def event_delete (request, pk):
+    Event.objects.get(pk=pk).delete()
+    return redirect('event_list')
