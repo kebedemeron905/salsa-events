@@ -1,4 +1,6 @@
+{% extends 'salsa/base.html' %}
 
+{% block content %}
 <h2>{{ event.name }} <a href="">(edit)</a></h2>
 <h4>{{ event.Date }}</h4>
 <h4>{{ event.time_start }}-{{event.time_end}}</h4>
@@ -9,3 +11,4 @@
         <li>{{event.cost}} </li>
         <li><a href=''>{{event.event_site}}</a></li>
 </ul>
+{% endblock %}
